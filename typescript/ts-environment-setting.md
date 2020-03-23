@@ -85,7 +85,7 @@ text 상수의 선언문 중 `: string`은 해당 변수 값의 타입이 문자
 기본 명령어는
 
 ```
-$ tsc
+$ tsc # tsc 뒤에 파일명을 지정하면 tsconfig.json이 무시된다.
 // 또는 npx tsc
 ```
 
