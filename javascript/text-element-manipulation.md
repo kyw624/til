@@ -64,6 +64,7 @@ IE8 환경을 고려한다면 `innerText`를 사용하면 될 것 같다.
 [Stack Overflow >> innerText vs innerHTML vs label vs text vs textContent vs outerText](https://stackoverflow.com/questions/24427621/innertext-vs-innerhtml-vs-label-vs-text-vs-textcontent-vs-outertext)  
 [Tistory >> innerHTML, innerText, textContent 브라우저별 성능 비교](https://equal-blog.tistory.com/entry/innerHTML-innerText-textContent-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EB%B3%84-%EC%84%B1%EB%8A%A5-%EB%B9%84%EA%B5%90)  
 [Medium >> Why textContent is better than innerHTML and innerText?](https://blog.cloudboost.io/why-textcontent-is-better-than-innerhtml-and-innertext-9f8073eb9061)  
+[Medium >> What’s Best: innerText vs. innerHTML vs. textContent](https://medium.com/better-programming/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc)
 [MDN >> Element.innerHTML](https://developer.mozilla.org/ko/docs/Web/API/Element/innerHTML)  
 [MDN >> Node.innerText](https://developer.mozilla.org/ko/docs/Web/API/Node/innerText)  
 [MDN >> Node.textContent](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent)
