@@ -169,13 +169,22 @@ const [state, dispatch] = useReducer(reducer, initialState);
 
 <br />
 
+## **커스텀 Hooks**
+
+컴포넌트를 만들다보면 **반복되는 로직**이 자주 발생하게되는데 이것을 커스텀 Hook으로 만들어 재사용 가능하게 만들 수 있다.  
+파일명과 함수명은 use로 시작하며,  
+파일 내부에서 `useState`, `useEffect` 등의 여러 Hooks를 사용해 원하는 기능을 구현 후 컴포넌트에서 사용하고 싶은 값을 반환하면 된다.
+
+<br />
+
 ## **참고**
 
 ---
 
 [벨로퍼트와 함께하는 모던 리액트 >> useRef 로 컴포넌트 안의 변수 만들기](https://react.vlpt.us/basic/12-variable-with-useRef.html)  
-[벨로퍼트와 함께하는 모던 리액트 >> useEffect를 사용하여 마운트/언마운트/업데이트시 할 작업 설정하기](https://react.vlpt.us/basic/16-useEffect.html)
-[벨로퍼트와 함께하는 모던 리액트 >> useMemo 를 사용하여 연산한 값 재사용하기](https://react.vlpt.us/basic/17-useMemo.html)
-[벨로퍼트와 함께하는 모던 리액트 >> useCallback 을 사용하여 함수 재사용하기](https://react.vlpt.us/basic/18-useCallback.html)
-[벨로퍼트와 함께하는 모던 리액트 >> React.memo 를 사용한 컴포넌트 리렌더링 방지](https://react.vlpt.us/basic/19-React.memo.html)
-[벨로퍼트와 함께하는 모던 리액트 >> useReducer 를 사용하여 상태 업데이트 로직 분리하기](https://react.vlpt.us/basic/20-useReducer.html)
+[벨로퍼트와 함께하는 모던 리액트 >> useEffect를 사용하여 마운트/언마운트/업데이트시 할 작업 설정하기](https://react.vlpt.us/basic/16-useEffect.html)  
+[벨로퍼트와 함께하는 모던 리액트 >> useMemo 를 사용하여 연산한 값 재사용하기](https://react.vlpt.us/basic/17-useMemo.html)  
+[벨로퍼트와 함께하는 모던 리액트 >> useCallback 을 사용하여 함수 재사용하기](https://react.vlpt.us/basic/18-useCallback.html)  
+[벨로퍼트와 함께하는 모던 리액트 >> React.memo 를 사용한 컴포넌트 리렌더링 방지](https://react.vlpt.us/basic/19-React.memo.html)  
+[벨로퍼트와 함께하는 모던 리액트 >> useReducer 를 사용하여 상태 업데이트 로직 분리하기](https://react.vlpt.us/basic/20-useReducer.html)  
+[벨로퍼트와 함께하는 모던 리액트 >> 커스텀 Hooks 만들기](https://react.vlpt.us/basic/21-custom-hook.html)
