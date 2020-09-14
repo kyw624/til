@@ -70,7 +70,7 @@ useEffect(() => {
 >
 > ### **※** useEffect 안에서 사용되는 `상태/props` 가 있다면 deps에 꼭 넣어줘야하는 규칙이 있다.
 >
-> ### **안넣어주면?** useEffect 함수가 실행될 때 최신 `상태/props` 를 가리키지 않는다.
+> **안넣어주면?** useEffect 함수가 실행될 때 최신 `상태/props` 를 가리키지 않는다.
 
 <br />
 
@@ -85,6 +85,87 @@ useEffect(() => {
   1. setInterval, setTimeout을 사용해 등록된 작업들 clear 하기  
      (clearInterval, clearTimeout)
   2. 라이브러리 인스턴스 제거
+
+<br />
+
+## **useMemo**
+
+`useMemo`에서 memo는 memoized를 의미하며, 성능 최적화를 위해 이전 계산값을 재사용하게 해주는 Hook이다.
+첫번째 파라미터로 어떻게 연산할지 정의하는 함수가,  
+두번째 파라미터로 deps 배열을 받는다.
+
+- 배열의 내용이 바뀌면 등록한 함수를 호출해서 값을 연산.
+- 내용이 바뀌지 않았다면 이전에 연산한 값을 재사용.
+
+<br />
+
+## **useCallback**
+
+`useMemo`를 기반으로 만들어진 Hook.
+
+`useMemo`는 특정 결과값을 재사용하고 싶을 때 사용하지만,  
+`useCallback`은 리렌더링될 때 특정 함수를 새로 만들지않고 재사용하고 싶을 때 사용.
+함수 내에서 사용하는 `상태/props`가 있다면 꼭 deps 배열에 포함시켜야하며, 넣지않으면 최신 값의 참조를 보장하지 못한다.
+
+또한 useCallback만으로는 눈에 띄는 최적화는 없고 컴포넌트 렌더링 최적화 작업 (React.memo)을 함께 해줘야한다.
+
+> ### **React.memo**
+>
+> 컴포넌트의 props가 바뀌지 않았다면 리렌더링을 방지하는 성능 최적화를 위한 함수  
+> 이 함수 사용 시 컴포넌트에서 필요한 상황에서만 리렌더링하도록 설정이 가능해진다.  
+> 또한 두번째 파라미터에 `propsAreEqual` 함수를 사용해 특정값들만 비교하는 작업도 가능하다.
+>
+> **※** 렌더링 최적화를 하지 않을 컴포넌트에서의 사용은 불필요한 props만 비교하는 것이므로  
+> 실제 렌더링을 방지할 수 있는 경우에만 사용해야한다.
+
+리액트 개발 시 `useCallback`, `useeMemo`, `React.memo`는 컴포넌트 성능을 실제로 개선할 수 있는 상황에서만 사용하는걸 권장.  
+예를 들어, 특정 컴포넌트에서 재사용한다고 해서 리렌더링을 막을 수 없는 경우에는 사용 X.
+
+<br />
+
+## **useReducer**
+
+현재 상태와 액션 객체를 파라미터로 받아와서 새로운 상태를 반환해주는 함수로 상태관리에 있어 `useState`를 제외한 또 다른 방법이다.  
+`useReducer` 사용 시 컴포넌트의 상태 업데이트 로직을 컴포넌트에서 분리시킬 수 있다.
+
+- 컴포넌트 바깥에 작성하거나 다른 파일에 작성 후 불러 올 수도 있음.
+
+**사용예시**
+
+```js
+// Reducer 함수
+function reducer(state, action) {
+  switch (action.type) {
+    case "action.type1":
+      // 상태 변화 로직
+      return {
+        ...state,
+        /* 컴포넌트의 새로운 상태 */
+      };
+    case "action.type2":
+    default:
+      return state;
+  }
+}
+
+const [state, dispatch] = useReducer(reducer, initialState);
+// 첫번째 파라미터: reducer 함수 | 두번째 파라미터: 초기 상태
+// state: 컴포넌트에서 사용하는 상태
+// dispatch: 액션을 발생시키는 함수
+```
+
+- action
+  - 업데이트를 위한 정보를 가지고, 주로 `type` 값을 지닌 객체로 사용된다.
+  - 형태의 규칙은 없으나 `type` 값을 대문자와 `_`로 구성하는 관습이 있다.
+
+```js
+// input 값 변경하는 액션
+{
+  type: 'CHANGE_INPUT',
+  key: 'nickname',
+  value: 'DaengKim'
+}
+```
 
 <br />
 
