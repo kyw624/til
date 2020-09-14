@@ -175,3 +175,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
 
 [벨로퍼트와 함께하는 모던 리액트 >> useRef 로 컴포넌트 안의 변수 만들기](https://react.vlpt.us/basic/12-variable-with-useRef.html)  
 [벨로퍼트와 함께하는 모던 리액트 >> useEffect를 사용하여 마운트/언마운트/업데이트시 할 작업 설정하기](https://react.vlpt.us/basic/16-useEffect.html)
+[벨로퍼트와 함께하는 모던 리액트 >> useMemo 를 사용하여 연산한 값 재사용하기](https://react.vlpt.us/basic/17-useMemo.html)
+[벨로퍼트와 함께하는 모던 리액트 >> useCallback 을 사용하여 함수 재사용하기](https://react.vlpt.us/basic/18-useCallback.html)
+[벨로퍼트와 함께하는 모던 리액트 >> React.memo 를 사용한 컴포넌트 리렌더링 방지](https://react.vlpt.us/basic/19-React.memo.html)
+[벨로퍼트와 함께하는 모던 리액트 >> useReducer 를 사용하여 상태 업데이트 로직 분리하기](https://react.vlpt.us/basic/20-useReducer.html)
