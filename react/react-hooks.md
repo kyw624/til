@@ -136,13 +136,13 @@ useEffect(() => {
 // Reducer 함수
 function reducer(state, action) {
   switch (action.type) {
-    case "action.type1":
+    case 'action.type1':
       // 상태 변화 로직
       return {
         ...state,
         /* 컴포넌트의 새로운 상태 */
       };
-    case "action.type2":
+    case 'action.type2':
     default:
       return state;
   }
@@ -177,6 +177,95 @@ const [state, dispatch] = useReducer(reducer, initialState);
 
 <br />
 
+## **useLayoutEffect**
+
+`useEffect` 사용 시 상태값이 `useEffect`에 사용된 경우 화면이 깜빡이며 state가 뒤늦게 그려지는 등 사용자가 불편을 겪을 수 있다.
+
+`useLayoutEffect`는 이를 해결 할 수 있는 Hook이다.
+
+기본적으로 `React Hook Flow`에 의해  
+DOM의 레이아웃 배치와 페인트가 끝난 후 `useEffect`가 호출되지만  
+`useLayoutEffect`는 DOM 업데이트 이전에 호출된다.
+
+<br />
+
+## **useTransition**
+
+useLayoutEffect가 화면에 그려지기 전 앞당기는 Hook이었다면,  
+반대로 상태들의 우선순위나 필요에 의해 구분지어 늦출 수도 있는데 이때 사용되는게 `useTransition`이다.
+
+**사용예시**
+
+```jsx
+// 검색창에 특정 단어를 검색 후 결과들을 뒤늦게 보여주는 경우
+function App() {
+  const [search, setSearch] = useState(''); // 사용자가 입력하는 검색어
+  const [result, setResult] = useState(''); // 검색 결과
+
+  // loading: 로딩을 제공하고 싶을 때 사용 가능.
+  const [loading, startTransition] = useTransition();
+
+  const onChange = useCallback((e) => {
+    setName(e.target.value); // 사용자가 입력하는 값은 바로바로 Update
+
+    // 해당 문 안쪽의 코드들은 뒤늦게 보여진다.
+    startTransition(() => {
+      setResult(e.target.value + '의 검색 결과...');
+    });
+  }, []);
+
+  return (
+    {loading ? <div>로딩중...</div> : null}
+    ...
+  );
+}
+```
+
+<br />
+
+## **useDeferredValue**
+
+`useTransition`처럼 상태들의 우선순위나 필요에 의해 늦출 수 있는 Hook으로  
+상태값을 받아 새로운 변수를 만들어준다.
+보통 `useMemo`와 함께 사용된다.
+
+**사용예시**
+
+```jsx
+// useTransition과 동일한 예제
+// 검색창에 특정 단어를 검색 후 결과들을 뒤늦게 보여주는 경우
+function App() {
+  const [search, setSearch] = useState('');
+  const [result, setResult] = useState('');
+
+  // setSearch는 그대로 바로바로 update.
+  // deferredSearch를 사용한 result는 상대적으로 덜 중요한 상태값이 되어
+  //  상대적으로 천천히 그려진다.
+  const deferredSearch = useDeferredValue(search);
+  const result = useMemo(() => deferrdSearch + "의 결과", [deferrdSearch])
+
+  const onChange = useCallback((e) => {
+    setName(e.target.value);
+  }, []);
+
+  return (
+    <>
+      {/* 사용자가 입력하는 name은 바로바로 Update */}
+      <input value={name} onChange={onChange} />
+      {/* defferedValue인 defferedSearch는 천천히 Update */}
+      {deferredSearch
+        ? Array(1000)
+            .fill()
+            .map((v, i) => <div key={i}>{result}</div>)
+        : null}
+    </>
+    ...
+  );
+}
+```
+
+<br />
+
 ## **참고**
 
 ---
@@ -188,3 +277,4 @@ const [state, dispatch] = useReducer(reducer, initialState);
 [벨로퍼트와 함께하는 모던 리액트 >> React.memo 를 사용한 컴포넌트 리렌더링 방지](https://react.vlpt.us/basic/19-React.memo.html)  
 [벨로퍼트와 함께하는 모던 리액트 >> useReducer 를 사용하여 상태 업데이트 로직 분리하기](https://react.vlpt.us/basic/20-useReducer.html)  
 [벨로퍼트와 함께하는 모던 리액트 >> 커스텀 Hooks 만들기](https://react.vlpt.us/basic/21-custom-hook.html)
+[인프런 >> ZeroCho's 웹 게임을 만들며 배우는 React](https://www.inflearn.com/course/web-game-react)
