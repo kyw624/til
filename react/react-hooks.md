@@ -187,6 +187,10 @@ const [state, dispatch] = useReducer(reducer, initialState);
 DOM의 레이아웃 배치와 페인트가 끝난 후 `useEffect`가 호출되지만  
 `useLayoutEffect`는 DOM 업데이트 이전에 호출된다.
 
+> **○ React Hook Flow Diagram**
+>
+> ![react-hook-flow](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
+
 <br />
 
 ## **useTransition**
